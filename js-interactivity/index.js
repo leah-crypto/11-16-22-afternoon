@@ -52,13 +52,24 @@ document.querySelector('form').addEventListener('submit', addMovie);
 
 function deleteMovie(e) {
   e.target.parentNode.remove();
-  message.textContent = "Movie deleted!";
+  console.log(e.target.previousSibling);
+  message.textContent = `${e.target.previousSibling.textContent} deleted!`;
+
+  revealMessage();
 }
 
 function crossOffMovie(e) {
   e.target.classList.toggle('checked');
-  e.target.classList.contains("checked") ? (message.textContent = "Movie watched") : (message.textContent = "Movie added back!"); 
+  e.target.classList.contains("checked") 
+  ? (message.textContent = `${e.target.textContent} watched`) 
+  : (message.textContent = `${e.target.textContent} added backed`); 
 }
 
+function revealMessage(){
+    message.classList = "";
+    setTimeout(() => {
+        message.classList.toggle("hide");
+    }, 1000);
+}
 
 
